@@ -1,5 +1,5 @@
 import os
-import fitz
+import fitz  # PyMuPDF
 
 def search_pdf(file_path, keyword, summary):
     doc = fitz.open(file_path)
@@ -10,17 +10,16 @@ def search_pdf(file_path, keyword, summary):
                 if keyword.lower() in line.lower():
                     info = f"[PDF] {os.path.basename(file_path)} - Page {page_num + 1}:\n   > {line.strip()}"
                     print("\n" + info)
-                    summary.append(line.strip())  # storage the result for the next search
+                    summary.append(info)
     doc.close()
 
-
-# Make sure search_pdf(file_path, keyword, summary) is already defined
-
+# === Config ===
 folder_path = r"D:\Realtek_YT\CN5\Document\Internal\Standard\100_1000BASE-T1\1000BASE-T1"
 
 summary = []              # Current search results
 history_stack = []        # Stack to store previous search results
 
+# === Main Loop ===
 while True:
     if not summary:
         keyword = input("\n🔍 Enter the first keyword (or 'exit' to quit): ").strip()
@@ -47,8 +46,8 @@ while True:
         for root, dirs, files in os.walk(folder_path):
             for file in files:
                 file_path = os.path.join(root, file)
-                if file.lower().endswith('.pdf'):
-                    search_pdf(file_path, keyword, summary)
+                #if file.lower().endswith('.pdf'):
+                    #search_pdf(file_path, keyword, summary)
     else:
         history_stack.append(summary[:])  # Save current state
         print(f"\n🔎 Filtering current results with keyword '{keyword}'...")
