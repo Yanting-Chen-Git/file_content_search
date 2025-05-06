@@ -16,7 +16,7 @@ def search_pdf(file_path, keyword, summary):
 
 # Make sure search_pdf(file_path, keyword, summary) is already defined
 
-folder_path = r"D:\Realtek_YT\CN5\Document\Internal\Standard\100_1000BASE-T1\1000BASE-T1"
+folder_path = r"Path"
 
 summary = []              # Current search results
 history_stack = []        # Stack to store previous search results
